@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="header">
+      <h1>Employee Directory</h1>
+    </div>
+
+    <div class="container">
+      <div class="alert alert-success" id="successAlert"></div>
+      <div class="alert alert-error" id="errorAlert"></div>
+
+      <div class="controls">
+        <div class="search-bar">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Search by name or email..."
+          />
+        </div>
+        <div class="filter-section">
+          <button class="btn btn-secondary" onclick="openFilterModal()">
+            Filter
+          </button>
+          <button class="btn btn-primary" onclick="openAddModal()">
+            Add Employee
+          </button>
+        </div>
+      </div>
+
+      <div id="employeesContainer">
+        <!-- Employees will be rendered here -->
+      </div>
+
+      <div class="pagination">
+        <label for="itemsPerPage">Items per page:</label>
+        <select id="itemsPerPage" onchange="changeItemsPerPage()">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+        <button id="prevBtn" onclick="prevPage()" disabled>Previous</button>
+        <span id="pageInfo">Page 1 of 1</span>
+        <button id="nextBtn" onclick="nextPage()" disabled>Next</button>
+      </div>
+    </div>
+
+    <!-- Filter Modal -->
+    <div class="filter-popup" id="filterModal">
+      <div class="filter-content">
+        <h3>Filter Employees</h3>
+        <div class="filter-group">
+          <label for="filterName">First Name:</label>
+          <input type="text" id="filterName" placeholder="Enter first name" />
+        </div>
+        <div class="filter-group">
+          <label for="filterDepartment">Department:</label>
+          <select id="filterDepartment">
+            <option value="">All Departments</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label for="filterRole">Role:</label>
+          <select id="filterRole">
+            <option value="">All Roles</option>
+          </select>
+        </div>
+        <div class="filter-actions">
+          <button class="btn btn-secondary" onclick="clearFilters()">
+            Clear
+          </button>
+          <button class="btn btn-primary" onclick="applyFilters()">
+            Apply
+          </button>
+          <button class="btn btn-secondary" onclick="closeFilterModal()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add/Edit Employee Modal -->
+    <div class="modal" id="employeeModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Add Employee</h2>
+          <button class="close-btn" onclick="closeEmployeeModal()">
+            &times;
+          </button>
+        </div>
+        <form id="employeeForm">
+          <div class="form-group">
+            <label for="firstName">First Name *</label>
+            <input type="text" id="firstName" required />
+            <div class="error-message" id="firstNameError"></div>
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name *</label>
+            <input type="text" id="lastName" required />
+            <div class="error-message" id="lastNameError"></div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email *</label>
+            <input type="email" id="email" required />
+            <div class="error-message" id="emailError"></div>
+          </div>
+          <div class="form-group">
+            <label for="department">Department *</label>
+            <select id="department" required>
+              <option value="">Select Department</option>
+              <option value="Engineering">Engineering</option>
+              <option value="Marketing">Marketing</option>
+              <option value="Sales">Sales</option>
+              <option value="HR">HR</option>
+              <option value="Finance">Finance</option>
+              <option value="Operations">Operations</option>
+            </select>
+            <div class="error-message" id="departmentError"></div>
+          </div>
+          <div class="form-group">
+            <label for="role">Role *</label>
+            <input type="text" id="role" required />
+            <div class="error-message" id="roleError"></div>
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              onclick="closeEmployeeModal()"
+            >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">Save Employee</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
